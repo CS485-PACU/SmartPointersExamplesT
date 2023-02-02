@@ -147,6 +147,32 @@ std::shared_ptr<bigData> callFunctionsWithPointers()
   return pSharedPtr;
 }
 
+//***************************************************************************
+// Function:    makeAnArray
+//
+// Description: use make_unique to create an array
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+void makeAnArray()
+{
+  // make an array of bigData objects
+  // the bigData objects are not dynamically 
+  // allocated
+  std::cout << std::endl;
+  auto pBigDataArray(std::make_unique<bigData[]>(5));
+  for(int i = 0; i < 5; ++i)
+  {
+    pBigDataArray[i] = bigData(300+i);
+  }
+
+  for(int i = 0; i < 5; ++i)
+  {
+    std::cout << pBigDataArray[i] << std::endl;
+  }
+}
 
 //***************************************************************************
 // Function:    main
@@ -178,6 +204,8 @@ int main()
   std::cout << "Returned Shared Pointer: " << *pSharedPtr;
   std::cout << std::endl << std::endl;
 
+  makeAnArray();
+  
   pSharedPtr = nullptr;
 
 	bigData *pNormalPtr;
