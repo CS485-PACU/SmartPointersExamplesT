@@ -98,6 +98,57 @@ void useSharedPtrs()
 }
 
 //***************************************************************************
+// Function:    acceptUniquePtr
+//
+// Description: Accept a unique_ptr as an argument
+//
+// Parameters:  rpData - the unique_ptr, passed by reference
+//
+// Returned:    EXIT_SUCCESS
+//***************************************************************************
+void acceptUniquePtr(std::unique_ptr<bigData> &rpData)
+{
+  std::cout << "acceptUniquePtr: " << *rpData << std::endl;
+  std::cout << std::endl;
+}
+
+//***************************************************************************
+// Function:    acceptSharedPtr
+//
+// Description: Accept a shared_ptr as an argument
+//
+// Parameters:  pData - the shared_ptr
+//
+// Returned:    EXIT_SUCCESS
+//***************************************************************************
+void acceptSharedPtr(std::shared_ptr<bigData> cData)
+{
+  std::cout << "acceptSharedPtr: " << *cData << std::endl;
+  std::cout << std::endl;
+}
+
+//***************************************************************************
+// Function:    callFunctionsWithPointers
+//
+// Description: Demonstrate the use of smart pointers with function calls
+//
+// Parameters:  None
+//
+// Returned:    A shared_ptr
+//***************************************************************************
+std::shared_ptr<bigData> callFunctionsWithPointers()
+{
+  auto pUniquePtr = std::make_unique<bigData>(100);
+  auto pSharedPtr = std::make_shared<bigData>(101);
+
+  acceptUniquePtr(pUniquePtr);
+  acceptSharedPtr(pSharedPtr);
+
+  return pSharedPtr;
+}
+
+
+//***************************************************************************
 // Function:    main
 //
 // Description: Demonstrate the use of smart pointers.
@@ -122,6 +173,12 @@ int main()
 
   std::cout << "return from useSharedPtrs" << std::endl;
 
+  auto pSharedPtr  = callFunctionsWithPointers();
+
+  std::cout << "Returned Shared Pointer: " << *pSharedPtr;
+  std::cout << std::endl << std::endl;
+
+  pSharedPtr = nullptr;
 
 	bigData *pNormalPtr;
 
