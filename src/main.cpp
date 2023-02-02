@@ -12,11 +12,17 @@
 #include <memory>
 #include "BigData.h"
 
-
-
-int main()
+//***************************************************************************
+// Function:    useUniquePtrs
+//
+// Description: Demonstrate the use of unique_ptr.
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+void useUniquePtrs()
 {
-
 	// unique_ptr
 	std::unique_ptr<bigData> pBigData(new bigData(40));
   auto pBigDataAgain(std::make_unique<bigData>(41));
@@ -39,9 +45,19 @@ int main()
 
 	std::cout << std::endl;
 	std::cout << std::endl;
+}
 
-
-
+//***************************************************************************
+// Function:    useSharedPtrs
+//
+// Description: Demonstrate the use of shared_ptr.
+//
+// Parameters:  None
+//
+// Returned:    None
+//***************************************************************************
+void useSharedPtrs()
+{
 	// shared_ptr
 	std::shared_ptr<bigData> pBigDataShared(new bigData(7));
 
@@ -79,8 +95,23 @@ int main()
 
 	std::cout << std::endl;
 
-	// delete of pBigData is not necessary since the
-	// unique_ptr handles that.
+}
+
+int main()
+{
+
+
+  std::cout << "Call useUniquePtrs" << std::endl;
+
+  useUniquePtrs();
+
+  std::cout << "return from useUniquePtrs" << std::endl;
+
+  std::cout << "Call useSharedPtrs" << std::endl;
+
+  useSharedPtrs();
+
+  std::cout << "return from useSharedPtrs" << std::endl;
 
 
 	bigData *pNormalPtr;
