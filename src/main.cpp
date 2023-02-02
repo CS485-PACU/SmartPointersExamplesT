@@ -97,6 +97,15 @@ void useSharedPtrs()
 
 }
 
+//***************************************************************************
+// Function:    main
+//
+// Description: Demonstrate the use of smart pointers.
+//
+// Parameters:  None
+//
+// Returned:    EXIT_SUCCESS
+//***************************************************************************
 int main()
 {
 
