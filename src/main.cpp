@@ -13,6 +13,22 @@
 #include "BigData.h"
 
 //***************************************************************************
+// Function:    useRawPtr
+//
+// Description: Demonstrate the dangerous use of raw pointers mixed with
+//              smart pointers. Deletes object pointed to by parameter
+//
+// Parameters:  pcData - raw pointer to bigData. 
+//
+// Returned:    None
+//***************************************************************************
+void useRawPtr(bigData *pcData)
+{
+  std::cout << "RAW: " <<  *pcData << std::endl;
+  delete pcData;
+}
+
+//***************************************************************************
 // Function:    useUniquePtrs
 //
 // Description: Demonstrate the use of unique_ptr.
@@ -206,6 +222,10 @@ int main()
 
   makeAnArray();
   
+  //useRawPtr(pSharedPtr); // type error
+  //useRawPtr(pSharedPtr.get()); // runtime error: object is deleted
+  //std::cout << "after Raw: " << *pSharedPtr << std::endl; // crash
+
   pSharedPtr = nullptr;
 
 	bigData *pNormalPtr;
@@ -213,6 +233,8 @@ int main()
 	pNormalPtr = new bigData (1);
 
 	std::cout << *pNormalPtr << std::endl;
+
+  //useRawPtr(pNormalPtr); // deletes pNormalPtr
 
 	//*pNormalPtr = 3;
 
