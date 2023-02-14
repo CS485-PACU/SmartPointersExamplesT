@@ -10,6 +10,8 @@ bin/*.exe
 bin/*.obj
 **/*.pdf
 **/*.PDF
+**/vgcore.*
+**/.DS_Store
 
 # User-specific files
 *.rsuser
